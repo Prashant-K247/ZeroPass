@@ -73,7 +73,7 @@ export default async function Dashboard() {
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b border-white/5 bg-white/[0.02]">
+              <tr className="border-b border-white/5 bg-white/2">
                 <th className="px-6 py-5 text-xs font-bold uppercase tracking-widest text-gray-500">User / Email</th>
                 <th className="px-6 py-5 text-xs font-bold uppercase tracking-widest text-gray-500">Status</th>
                 <th className="px-6 py-5 text-xs font-bold uppercase tracking-widest text-gray-500">IP Address</th>
@@ -83,7 +83,7 @@ export default async function Dashboard() {
             <tbody className="divide-y divide-white/5">
               {Array.isArray(attempts) && attempts.length > 0 ? (
                 attempts.map((a: any) => (
-                  <tr key={a._id} className="hover:bg-white/[0.03] transition-colors group">
+                  <tr key={a._id} className="hover:bg-white/3 transition-colors group">
                     <td className="px-6 py-5">
                       <div className="flex items-center gap-3">
                         <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-xs font-bold text-gray-300 group-hover:border-white/40 transition-all">
