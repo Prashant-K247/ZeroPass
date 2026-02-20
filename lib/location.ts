@@ -1,6 +1,6 @@
 export async function getLocationFromIP(ip: string) {
   try {
-    const res = await fetch(`http://ip-api.com/json/${ip}`);
+    const res = await fetch(`https://ip-api.com/json/${ip}`);
     const data = await res.json();
 
     console.log("IP-API RESPONSE:", data);
