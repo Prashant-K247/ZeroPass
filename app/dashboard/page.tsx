@@ -78,6 +78,7 @@ export default async function Dashboard() {
                 <th className="px-6 py-5 text-xs font-bold uppercase tracking-widest text-gray-500">Status</th>
                 <th className="px-6 py-5 text-xs font-bold uppercase tracking-widest text-gray-500">IP Address</th>
                 <th className="px-6 py-5 text-xs font-bold uppercase tracking-widest text-gray-500">Location</th>
+                <th className="px-6 py-5 text-xs font-bold uppercase tracking-widest text-gray-500">Date / Time</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-white/5">
@@ -113,11 +114,14 @@ export default async function Dashboard() {
                         {a.location || 'Unknown'}
                       </div>
                     </td>
+                    <td className="px-6 py-5 text-sm text-gray-400">
+                      {a.createdAt ? new Date(a.createdAt).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' }) : '—'}
+                    </td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan={4} className="px-6 py-20 text-center text-gray-600 font-medium">
+                  <td colSpan={5} className="px-6 py-20 text-center text-gray-600 font-medium">
                     No login attempts recorded yet.
                   </td>
                 </tr>

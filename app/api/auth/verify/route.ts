@@ -14,7 +14,7 @@ export async function GET(req: Request){
       ip = "8.8.8.8";
     }
     
-    const url = new URL(req.url);
+    // const url = new URL(req.url);
 
     
 
@@ -61,11 +61,25 @@ export async function GET(req: Request){
 
     cookieStore.set("session", sessionToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production", 
+      secure: false, 
       path: "/",
       maxAge: 60 * 60, // 1 hour
     });
 
    
-    return NextResponse.redirect(`${url.origin}/dashboard`);
+    return NextResponse.redirect(`${process.env.BASE_URL}/dashboard`);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

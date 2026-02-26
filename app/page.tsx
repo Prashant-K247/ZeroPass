@@ -24,7 +24,7 @@ export default function Home() {
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
         <Link href="/login" className="group relative inline-flex items-center justify-center bg-white text-black px-8 py-4 rounded-full font-bold text-lg transition-all hover:bg-gray-600 hover:shadow-2xl active:scale-95 overflow-hidden">
           <span className="relative z-10">Get Started Now</span>
-          <div className="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-500" />
+          <div className="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-linear-to-r from-transparent via-white/10 to-transparent transition-transform duration-500" />
         </Link>
         <Link href="/docs">
         <button className="px-8 py-4 text-gray-500 font-medium hover:text-white transition-colors">
