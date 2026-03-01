@@ -1,25 +1,15 @@
-import nodemailer from "nodemailer";
-import dns from "dns";
+import { Resend } from "resend";
 
-dns.setDefaultResultOrder("ipv4first");
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function sendLoginEmail(to: string, token: string) {
-  const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
 
   const verifyLink = `${process.env.BASE_URL}/api/auth/verify?token=${token}`;
   const notMeLink = `${process.env.BASE_URL}/api/auth/not-me?token=${token}`;
 
-  await transporter.sendMail({
-    from: process.env.EMAIL_USER,
-    to,
+  await resend.emails.send({
+    from: "zeropass",
+    to: to,
     subject: "Login to your ZeroPass account",
     html: `
     <div style="font-family: Arial, Helvetica, sans-serif; background-color:#f4f6f8; padding:40px 20px;">
