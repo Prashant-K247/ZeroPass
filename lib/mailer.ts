@@ -7,11 +7,11 @@ export async function sendLoginEmail(to: string, token: string) {
   const verifyLink = `${process.env.BASE_URL}/api/auth/verify?token=${token}`;
   const notMeLink = `${process.env.BASE_URL}/api/auth/not-me?token=${token}`;
 
-  await resend.emails.send({
-    from: "ZeroPass <onboarding@resend.dev>",
-    to: to,
-    subject: "Login to your ZeroPass account",
-    html: `
+  const { data, error } = await resend.emails.send({
+  from: "ZeroPass <onboarding@resend.dev>",
+  to: to,
+  subject: "Login to your ZeroPass account",
+   html: `
     <div style="font-family: Arial, Helvetica, sans-serif; background-color:#f4f6f8; padding:40px 20px;">
         <div style="max-width:480px; margin:0 auto; background:#ffffff; border-radius:12px; padding:32px; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
 
@@ -60,5 +60,8 @@ export async function sendLoginEmail(to: string, token: string) {
         </p>
     </div>
     `,
-  });
+});
+
+console.log("RESEND DATA:", data);
+console.log("RESEND ERROR:", error);
 }
