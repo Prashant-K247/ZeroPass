@@ -13,15 +13,11 @@ export async function GET(req: Request){
     let ip = forwarded
       ? forwarded.split(",")[0].trim()
       : req.headers.get("x-real-ip") || "8.8.8.8";
-    
+
     if (ip === "::1" || ip === "127.0.0.1") {
       ip = "8.8.8.8";
     }
-    
-
-
-    
-
+  
     const { searchParams } = new URL(req.url);
     const token = searchParams.get("token");
 
@@ -65,12 +61,11 @@ export async function GET(req: Request){
 
     cookieStore.set("session", sessionToken, {
       httpOnly: true,
-      secure: false, 
+      secure: process.env.NODE_ENV === "production",
       path: "/",
       maxAge: 60 * 60, // 1 hour
     });
 
-   
     return NextResponse.redirect(`${process.env.BASE_URL}/dashboard`);
 }
 
