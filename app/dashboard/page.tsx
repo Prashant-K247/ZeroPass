@@ -7,7 +7,7 @@ async function getAttempts() {
   const session = cookieStore.get("session");
 
   const res = await fetch(
-    "http://localhost:3000/api/dashboard/attempts",
+    `${process.env.BASE_URL}/api/dashboard/attempts`,
     {
       cache: "no-store",
       headers: {

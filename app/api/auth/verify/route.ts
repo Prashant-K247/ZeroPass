@@ -8,13 +8,17 @@ import { cookies } from "next/headers";
 
 export async function GET(req: Request){
     await connectDB();
-    let ip =req.headers.get("x-forwarded-for") ||req.headers.get("x-real-ip") ||"8.8.8.8";
-//localhost testing fallback
+    const forwarded = req.headers.get("x-forwarded-for");
+
+    let ip = forwarded
+      ? forwarded.split(",")[0].trim()
+      : req.headers.get("x-real-ip") || "8.8.8.8";
+    
     if (ip === "::1" || ip === "127.0.0.1") {
       ip = "8.8.8.8";
     }
     
-    // const url = new URL(req.url);
+
 
     
 

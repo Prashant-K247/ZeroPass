@@ -2,15 +2,15 @@ import nodemailer from "nodemailer";
 
 export async function sendLoginEmail(to:string, token:string){
 
-    const Transporter = nodemailer.createTransport(
-        {
-            service:"gmail",
-            auth:{
-                user:process.env.EMAIL_USER,
-                pass:process.env.EMAIL_PASS
-            }
-        }
-    )
+    const Transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
     const verifyLink = `${process.env.BASE_URL}/api/auth/verify?token=${token}`;
     const notMeLink = `${process.env.BASE_URL}/api/auth/not-me?token=${token}`;
 
