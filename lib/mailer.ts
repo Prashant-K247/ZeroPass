@@ -8,7 +8,7 @@ export async function sendLoginEmail(to: string, token: string) {
   const notMeLink = `${process.env.BASE_URL}/api/auth/not-me?token=${token}`;
 
   await resend.emails.send({
-    from: "zeropass",
+    from: "ZeroPass <onboarding@resend.dev>",
     to: to,
     subject: "Login to your ZeroPass account",
     html: `
