@@ -1,20 +1,23 @@
 import nodemailer from "nodemailer";
+import dns from "dns";
 
-export async function sendLoginEmail(to:string, token:string){
+dns.setDefaultResultOrder("ipv4first");
 
-    const Transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
-    const verifyLink = `${process.env.BASE_URL}/api/auth/verify?token=${token}`;
-    const notMeLink = `${process.env.BASE_URL}/api/auth/not-me?token=${token}`;
+export async function sendLoginEmail(to: string, token: string) {
+  const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
 
-    await Transporter.sendMail({
+  const verifyLink = `${process.env.BASE_URL}/api/auth/verify?token=${token}`;
+  const notMeLink = `${process.env.BASE_URL}/api/auth/not-me?token=${token}`;
+
+  await transporter.sendMail({
     from: process.env.EMAIL_USER,
     to,
     subject: "Login to your ZeroPass account",
@@ -67,6 +70,5 @@ export async function sendLoginEmail(to:string, token:string){
         </p>
     </div>
     `,
-});
-
+  });
 }
