@@ -65,9 +65,9 @@ export async function GET(req: Request){
       path: "/",
       maxAge: 60 * 60, // 1 hour
     });
-
+    const baseUrl = process.env.VERCEL_URL? `https://${process.env.VERCEL_URL}`: "http://localhost:3000";
    
-    return NextResponse.redirect(`${process.env.BASE_URL}/dashboard`);
+    return NextResponse.redirect(`${baseUrl}/dashboard`);
 }
 
 
